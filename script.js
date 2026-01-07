@@ -44,8 +44,8 @@ const noteFrequencies = {
 };
 
 // Real song melodies (note sequences using keyboard mappings)
-// Lower octave: C D E F G A B = C4 D4 E4 F4 G4 A4 B4
-// Upper octave: Z X V N M K L Q = C5 D5 E5 F5 G5 A5 B5 C6
+// Lower octave: C D E F G A B = C3 D3 E3 F3 G3 A3 B3
+// Upper octave: Z X V N M K L Q = C4 D4 E4 F4 G4 A4 B4 C5
 const songs = [
     {
         name: "Twinkle Twinkle Little Star",
