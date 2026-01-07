@@ -44,28 +44,28 @@ const noteFrequencies = {
 };
 
 // Real song melodies (note sequences using keyboard mappings)
-// Q W E R T Y U I = C5 D5 E5 F5 G5 A5 B5 C6
-// Z X C V B N M = C4 D4 E4 F4 G4 A4 B4
+// Lower octave: C D E F G A B = C4 D4 E4 F4 G4 A4 B4
+// Upper octave: Z X V N M K L Q = C5 D5 E5 F5 G5 A5 B5 C6
 const songs = [
     {
         name: "Twinkle Twinkle Little Star",
-        notes: "zzvvnnmbbxxzzzvbbxxvbbxxzzvvnnmbbxxzzz"
+        notes: "zzmmkkllmmnnnmllmmnnllmmnnzzmmkkllmmnnnzzz"
     },
     {
         name: "Happy Birthday",
-        notes: "zzxzcxzzxzvxzzznvcxmmncvx"
+        notes: "zzxzvxzzxzmxzzzkmzqqklz"
     },
     {
         name: "Mary Had a Little Lamb",
-        notes: "xzzxxxxxxxxxxxxvvvxzxxxxxxxxz"
+        notes: "xzzxxxxxxxxxxxxxnnxzxxxxxxxxz"
     },
     {
         name: "Jingle Bells",
-        notes: "xxxxxxxxxvzxbbbbxxxxvvvbx"
+        notes: "xxxxxxxxxnzxllllxxxxnnnlx"
     },
     {
         name: "Ode to Joy",
-        notes: "xxcvvbxzxxzzxxxcvvbxzzxcx"
+        notes: "xxvnmlxzxxzzxxxvnmlxzzxvx"
     },
     {
         name: "Hot Cross Buns",
@@ -73,11 +73,11 @@ const songs = [
     },
     {
         name: "Row Row Row Your Boat",
-        notes: "zzzxcvvvxcvnvczzzvvvxz"
+        notes: "zzzxvnnnxvnknvzzznnnxz"
     },
     {
         name: "London Bridge",
-        notes: "vnbvxbxbxxxxvvnbvx"
+        notes: "nmlnxlxlxxxxnnmlnx"
     }
 ];
 
@@ -133,9 +133,9 @@ function playNote(frequency, duration = 0.3) {
     gainNode.connect(audioContext.destination);
 
     oscillator.frequency.value = getTransposedFrequency(frequency);
-    oscillator.type = 'sine';
+    oscillator.type = 'triangle';
 
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.setValueAtTime(0.6, audioContext.currentTime);
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
 
     oscillator.start(audioContext.currentTime);
@@ -196,7 +196,7 @@ function startSong(songIndex) {
 function startCustomGame(text) {
     const filtered = filterSentence(text);
     if (filtered.length === 0) {
-        alert('Please enter a melody with valid piano keys (a-l, w, e, t, y, u, o, p)');
+        alert('Please enter a melody with valid piano keys (c-g, a-b, z, x, v, n, m, k, l, q, and sharps: r, t, u, i, o, s, w, h, j, p)');
         return false;
     }
     currentSong = { name: "Custom Melody", notes: filtered };
